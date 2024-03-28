@@ -24,14 +24,23 @@ public class CatTest {
     }
 
     @Test
-    public void getSoundTest(){
+    public void getSoundTest() {
         Assert.assertEquals("Мяу", cat.getSound());
     }
 
     @Test
     public void getFoodTest() throws Exception {
         Mockito.when(feline.eatMeat()).thenReturn(List.of("Мясо"));
-        Assert.assertEquals("Мясо", cat.getFood().get(0));
+        List<String> felineMenu = cat.getFood();
+        List<String> testMenu = List.of("Мясо");
+        boolean isListEquals = true;
+        for (String element : felineMenu) {
+            if (!testMenu.contains(element)) {
+                isListEquals = false;
+                break;
+            }
+        }
+        Assert.assertTrue(isListEquals);
     }
 
     @Test

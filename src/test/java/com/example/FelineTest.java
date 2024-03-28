@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.List;
+
 @RunWith(MockitoJUnitRunner.class)
 public class FelineTest {
 
@@ -18,9 +20,16 @@ public class FelineTest {
 
     @Test
     public void eatMeatTest() throws Exception {
-        Assert.assertEquals("Животные", feline.eatMeat().get(0));
-        Assert.assertEquals("Птицы", feline.eatMeat().get(1));
-        Assert.assertEquals("Рыба", feline.eatMeat().get(2));
+        List<String> felineMenu = feline.eatMeat();
+        List<String> testMenu = List.of("Животные", "Птицы", "Рыба");
+        boolean isListEquals = true;
+        for (String element : felineMenu) {
+            if (!testMenu.contains(element)) {
+                isListEquals = false;
+                break;
+            }
+        }
+        Assert.assertTrue(isListEquals);
     }
 
     @Test

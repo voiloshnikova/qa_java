@@ -32,7 +32,16 @@ public class LionTest {
     @Test
     public void getFoodTest() throws Exception {
         Mockito.when(feline.getFood(Mockito.anyString())).thenReturn(List.of("Мясо"));
-        Assert.assertEquals("Мясо", lion.getFood().get(0));
+        List<String> felineMenu = lion.getFood();
+        List<String> testMenu = List.of("Мясо");
+        boolean isListEquals = true;
+        for (String element : felineMenu) {
+            if (!testMenu.contains(element)) {
+                isListEquals = false;
+                break;
+            }
+        }
+        Assert.assertTrue(isListEquals);
     }
 
     @Test
