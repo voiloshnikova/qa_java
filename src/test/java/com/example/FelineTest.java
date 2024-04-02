@@ -4,9 +4,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class FelineTest {
@@ -20,30 +23,21 @@ public class FelineTest {
 
     @Test
     public void eatMeatTest() throws Exception {
-        List<String> felineMenu = feline.eatMeat();
-        List<String> testMenu = List.of("Животные", "Птицы", "Рыба");
-        boolean isListEquals = true;
-        for (String element : felineMenu) {
-            if (!testMenu.contains(element)) {
-                isListEquals = false;
-                break;
-            }
-        }
-        Assert.assertTrue(isListEquals);
+        Assert.assertEquals(List.of("Животные", "Птицы", "Рыба"), feline.eatMeat());
     }
 
     @Test
     public void getFamilyTest() {
-        Assert.assertEquals("Кошачьи", feline.getFamily());
+        assertEquals("Кошачьи", feline.getFamily());
     }
 
     @Test
     public void getKittensWithoutParametersTest() {
-        Assert.assertEquals(1, feline.getKittens());
+        assertEquals(1, feline.getKittens());
     }
 
     @Test
     public void getKittensWithParametersTest() {
-        Assert.assertEquals(10, feline.getKittens(10));
+        assertEquals(10, feline.getKittens(10));
     }
 }

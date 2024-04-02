@@ -11,6 +11,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+
 @RunWith(MockitoJUnitRunner.class)
 public class CatTest {
     @Mock
@@ -25,22 +27,13 @@ public class CatTest {
 
     @Test
     public void getSoundTest() {
-        Assert.assertEquals("Мяу", cat.getSound());
+        assertEquals("Мяу", cat.getSound());
     }
 
     @Test
     public void getFoodTest() throws Exception {
-        Mockito.when(feline.eatMeat()).thenReturn(List.of("Мясо"));
-        List<String> felineMenu = cat.getFood();
-        List<String> testMenu = List.of("Мясо");
-        boolean isListEquals = true;
-        for (String element : felineMenu) {
-            if (!testMenu.contains(element)) {
-                isListEquals = false;
-                break;
-            }
-        }
-        Assert.assertTrue(isListEquals);
+        Mockito.when(feline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        assertEquals(List.of("Животные", "Птицы", "Рыба"), cat.getFood());
     }
 
     @Test

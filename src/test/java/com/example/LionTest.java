@@ -28,20 +28,10 @@ public class LionTest {
         Mockito.when(feline.getKittens()).thenReturn(1);
         Assert.assertEquals(1, lion.getKittens());
     }
-
     @Test
     public void getFoodTest() throws Exception {
-        Mockito.when(feline.getFood(Mockito.anyString())).thenReturn(List.of("Мясо"));
-        List<String> felineMenu = lion.getFood();
-        List<String> testMenu = List.of("Мясо");
-        boolean isListEquals = true;
-        for (String element : felineMenu) {
-            if (!testMenu.contains(element)) {
-                isListEquals = false;
-                break;
-            }
-        }
-        Assert.assertTrue(isListEquals);
+        Mockito.when(feline.getFood(Mockito.anyString())).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        Assert.assertEquals(List.of("Животные", "Птицы", "Рыба"), lion.getFood());
     }
 
     @Test
